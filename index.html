@@ -106,14 +106,12 @@
       <p class="desc">Create a basic Node HTTP server that responds "Hello world".</p>
       <pre id="code1">
 // lab1: http server - hello world (index.js)
-const http = require('http');
+const http = require(‘http’);
+http.createServer((req, res) =>
+{
+ res.end(‘Hello world’);
+}).listen(3000);
 
-http.createServer((req, res) => {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello world');
-}).listen(3000, () => {
-  console.log('Server listening on http://localhost:3000');
-});
       </pre>
     </section>
 
@@ -145,6 +143,18 @@ data) =>
 server.listen(3000);
 
 server.listen(3000, () => console.log('Server running at http://localhost:3000'));
+
+//index.html
+<html>
+<body>
+&lt;html&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello, World!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</body>
+</html>
+
       </pre>
     </section>
 
@@ -624,11 +634,6 @@ export default App;
       <p class="desc">Small component that updates greetings as user types.</p>
       <pre id="code12">
 // App.js (useState example)
-<!DOCTYPE html>
-<html lang="en">
-<body>
-  <h2>React Code Example:</h2>
-  <pre><code>
 import React, { useState } from "react";
 
 function App() {
@@ -714,18 +719,16 @@ export default App;
       <p class="desc">Basic React Router setup using react-router-dom v6.</p>
       <pre id="code14">
 // App.js
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>React Router Example Code</title>
-  <link rel="stylesheet" href="style.css">
+  <title>React Router Code Display</title>
 </head>
 <body>
   <h1>React Router Example</h1>
-  <div class="code-container">
-    <h3>App.js</h3>
-    <pre><code>
+
+  <h2>App.js</h2>
+  <pre><code>
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./Home";
@@ -746,13 +749,31 @@ function App() {
 }
 
 export default App;
-    </code>
-  </div>
+  </code></pre>
 
-  <script src="script.js"></script>
+  <h2>Home.js</h2>
+  <pre><code>
+import React from "react";
+
+function Home() {
+  return &lt;h2&gt;Welcome to the Home Page&lt;/h2&gt;;
+}
+
+export default Home;
+  </code></pre>
+
+  <h2>About.js</h2>
+  <pre><code>
+import React from "react";
+
+function About() {
+  return &lt;h2&gt;This is the About Page&lt;/h2&gt;;
+}
+
+export default About;
+  </code></pre>
 </body>
 </html>
-
       </pre>
     </section>
 
@@ -889,6 +910,7 @@ export default Products;
 </body>
 
 </html>
+
 
 
 
