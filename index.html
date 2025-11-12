@@ -242,12 +242,23 @@ app.listen(PORT, () => {
 const express = require('express');
 const app = express();
 const PORT = 3000;
-
-app.get('/', (req, res) => res.send('Hello from Express Server!'));
-app.get('/home', (req, res) => res.send('Hello this is home page'));
-app.get('/about', (req, res) => res.send('Hello this is about page'));
-
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+app.get('/', (req, res) =>
+{
+ res.send('Hello from Express Server!');
+});
+app.get('/home', (req, res) =>
+{
+ res.send('Hello tis is home page ');
+});
+app.get('/about', (req, res) =>
+{
+ res.send('Hello this is about page');
+});
+app.listen(PORT, () =>
+{
+ console.log(`Server is running at
+http://localhost:${PORT}`);
+});
       </pre>
     </section>
 
@@ -623,4 +634,5 @@ export default Products;
 </script>
 
 </body>
+
 </html>
