@@ -190,21 +190,9 @@ app.post('/submit', (req, res) => {
 });
 
 app.listen(3000, () => console.log('Server on http://localhost:3000'));
-        <button onclick="sendData()">Submit JSON</button>
-<script>
-function sendData() {
-  fetch('http://localhost:3000/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: "BCA", section: "A" })
-  })
-  .then(res => res.json())
-  .then(data => alert('Response: ' + JSON.stringify(data)));
-}
-</script>
-
+       
 /* index.html snippet
-<button onclick="sendData()">Submit JSON</button>
+<p> <button onclick="sendData()">Submit JSON</button>
 <script>
 function sendData() {
   fetch('http://localhost:3000/submit', {
@@ -216,6 +204,7 @@ function sendData() {
   .then(data => alert('Response: ' + JSON.stringify(data)));
 }
 </script>
+</p>
 */
       </pre>
     </section>
@@ -650,4 +639,5 @@ export default Products;
 </body>
 
 </html>
+
 
