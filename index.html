@@ -191,16 +191,37 @@ app.post('/submit', (req, res) => {
 
 app.listen(3000, () => console.log('Server on http://localhost:3000'));
       
-<p> <button onclick="sendData()">Submit JSON</button>
-<script>
-function sendData() {
-  fetch('http://localhost:3000/submit', {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Display HTML Code</title>
+</head>
+<body>
+  <h2>HTML Code Example:</h2>
+  <pre><code>
+&lt;html&gt;
+&lt;body&gt;
+&lt;button onclick=&quot;sendData()&quot;&gt;Submit JSON&lt;/button&gt;
+&lt;script&gt;
+function sendData()
+{
+  fetch('http://localhost:3000/submit', 
+  {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: "BCA", section: "A" })
+    body: JSON.stringify({ name: &quot;BCA&quot;, section: &quot;A&quot; })
   })
-  .then(res => res.json())
-  .then(data => alert('Response: ' + JSON.stringify(data)));
+  .then(res =&gt; res.json())
+  .then(data =&gt; alert('Response: ' + JSON.stringify(data)));
+}
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+  </code></pre>
+</body>
+</html>
+
 }
 </script>
 </p>
@@ -637,6 +658,7 @@ export default Products;
 </body>
 
 </html>
+
 
 
 
