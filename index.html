@@ -193,10 +193,6 @@ app.listen(3000, () => console.log('Server on http://localhost:3000'));
       
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Display HTML Code</title>
-</head>
 <body>
   <h2>HTML Code Example:</h2>
   <pre><code>
@@ -419,10 +415,6 @@ http://localhost:3000');
 
         <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Display HTML Code</title>
-</head>
 <body>
   <h2>HTML Code Example:</h2>
   <pre><code>
@@ -492,10 +484,6 @@ app.listen(PORT, () => {
 
         <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Display HTML Code</title>
-</head>
 <body>
   <h2>HTML Code Example:</h2>
   <pre><code>
@@ -527,40 +515,51 @@ app.listen(PORT, () => {
       <p class="desc">React functional component capturing input and displaying submitted value.</p>
       <pre id="code10">
 // App.js (React)
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <pre><code>
 import React, { useState } from 'react';
-function UserForm()
-{
- const [inputValue, setInputValue] = useState('');
- const [submittedValue, setSubmittedValue] = useState('');
- const handleChange = (e) =>
- {
- setInputValue(e.target.value);
- };
-const handleSubmit = (e) =>
- {
- e.preventDefault();
- setSubmittedValue(inputValue);
- };
- return (
- <div >
- <h2>Simple React Form</h2>
- <form onSubmit={handleSubmit}>
- <input type="text"
- placeholder="Enter something..."
- value={inputValue}
- onChange={handleChange}
- />
- <button type="submit">Submit</button>
- </form>
- {submittedValue && (
- <div >
- <strong>You entered:</strong> {submittedValue}
- </div>
- )}
- </div>
- );
+
+function UserForm() {
+  const [inputValue, setInputValue] = useState('');
+  const [submittedValue, setSubmittedValue] = useState('');
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmittedValue(inputValue);
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Simple React Form&lt;/h2&gt;
+      &lt;form onSubmit={handleSubmit}&gt;
+        &lt;input
+          type="text"
+          placeholder="Enter something..."
+          value={inputValue}
+          onChange={handleChange}
+        /&gt;
+        &lt;button type="submit"&gt;Submit&lt;/button&gt;
+      &lt;/form&gt;
+      {submittedValue &amp;&amp; (
+        &lt;div&gt;
+          &lt;strong&gt;You entered:&lt;/strong&gt; {submittedValue}
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
 }
+
 export default UserForm;
+  </code></pre>
+</body>
+</html>
+
       </pre>
     </section>
 
@@ -588,28 +587,48 @@ app.get("/api/items", (req, res) =>
 });
 app.listen(5000);
 // App.js (React)
+const express = require("express");
+const cors = require("cors");
+const app = express();
+app.use(cors());
+
+const items = [
+  { id: 1, name: "Apple" },
+  { id: 2, name: "Banana" },
+  { id: 3, name: "Orange" }
+];
+
+app.get("/api/items", (req, res) => {
+  res.json(items);
+});
+
+app.listen(5000);
+
+// App.js (React)
 import React, { useEffect, useState } from "react";
-function App()
-{
- const [items, setItems] = useState([]);
- useEffect(() =>
- {
- fetch("http://localhost:5000/api/items")
- .then(response => response.json())
- .then(data => setItems(data))
- .catch(err => console.error("Error:", err));
- }, []);
- return (
- <div style={{ padding: "20px" }}>
- <h1>Items List</h1>
- <ul>
- {items.map(item => (
- <li key={item.id}>{item.name}</li>
- ))}
- </ul>
- </div>
- );
+
+function App() {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/items")
+      .then(response => response.json())
+      .then(data => setItems(data))
+      .catch(err => console.error("Error:", err));
+  }, []);
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Items List&lt;/h2&gt;
+      &lt;ul&gt;
+        {items.map(item =&gt; (
+          &lt;li key={item.id}&gt;{item.name}&lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
 }
+
 export default App;
       </pre>
     </section>
@@ -624,23 +643,24 @@ export default App;
       <pre id="code12">
 // App.js (useState example)
 import React, { useState } from "react";
-function App()
-{
- const [name, setName] = useState("");
 
- return (
- <div style={{ padding: "20px" }}>
- <h1>State Management Example</h1>
- <input
- type="text"
- placeholder="Enter your name"
- value={name}
- onChange={(e) => setName(e.target.value)}
- />
- <h2>Hello, {name || "Guest"}!</h2>
- </div>
- );
+function App() {
+  const [name, setName] = useState("");
+
+  return (
+    &lt;div style={{ padding: "20px" }}&gt;
+      &lt;h1&gt;State Management Example&lt;/h1&gt;
+      &lt;input
+        type="text"
+        placeholder="Enter your name"
+        value={name}
+        onChange={(e) =&gt; setName(e.target.value)}
+      /&gt;
+      &lt;h2&gt;Hello, {name || "Guest"}!&lt;/h2&gt;
+    &lt;/div&gt;
+  );
 }
+
 export default App;
       </pre>
     </section>
@@ -656,25 +676,32 @@ export default App;
 // App.js (Parent)
 import React from "react";
 import Child from "./Child";
-function App()
-{
- return (
- <div>
- <h1>Parent Component</h1>
- <Child name="Child" />
- </div>
- );
+
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Parent Component&lt;/h1&gt;
+      &lt;Child name="Child" /&gt;
+    &lt;/div&gt;
+  );
 }
+
 export default App;
 
 // Child.js
 import React from "react";
-function Child(props)
-{
- return <h2>This is the Child Component.<br /> Hello,
-{props.name}!</h2>;
+import Child from "./Child";
+
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Parent Component&lt;/h1&gt;
+      &lt;Child name="Child" /&gt;
+    &lt;/div&gt;
+  );
 }
-export default Child;
+
+export default App;
 
       </pre>
     </section>
@@ -739,52 +766,68 @@ export default About;
 // App.js (React)
 import React from "react";
 import Products from "./product";
-function App()
-{
- return (
- <div>
- <h1>Fake Store API Example</h1>
- <Products />
- </div>
- );
+
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Fake Store API Example&lt;/h1&gt;
+      &lt;Products /&gt;
+    &lt;/div&gt;
+  );
 }
+
 export default App;
 
-      import React, { useState, useEffect } from "react";
-function Products()
-{
- const [products, setProducts] = useState([]);
- useEffect(() =>
- {
- fetch("https://fakestoreapi.com/products?limit=50")
- .then((res) => res.json())
- .then((data) => setProducts(data));
- }, []);
- return (
- <div>
- <h2>Products List</h2>
- <div style={{ display: "grid", gridTemplateColumns:
-"repeat(4, 1fr)", gap: "20px" }}>
- {products.map((product) => (
- <div key={product.id}
-style={{
-border: "1px solid #ccc",
-padding: "10px",
-borderRadius: "8px"
-}}>
- <img src={product.image} alt={product.title}
-width="100" height="100" />
- <h4>{product.title}</h4>
- <p>Price: ${product.price}</p>
- <p>Category: {product.category}</p>
- <p>Rating: {product.rating.rate} ⭐
-({product.rating.count} reviews)</p>
- </div>
- ))}
- </div>
- </div>
- );
+
+import React, { useState, useEffect } from "react";
+
+function Products() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() =&gt; {
+    fetch("https://fakestoreapi.com/products?limit=50")
+      .then((res) =&gt; res.json())
+      .then((data) =&gt; setProducts(data));
+  }, []);
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Products List&lt;/h2&gt;
+      &lt;div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: "20px",
+        }}
+      &gt;
+        {products.map((product) =&gt; (
+          &lt;div
+            key={product.id}
+            style={{
+              border: "1px solid #ccc",
+              padding: "10px",
+              borderRadius: "8px",
+            }}
+          &gt;
+            &lt;img
+              src={product.image}
+              alt={product.title}
+              width="100"
+              height="100"
+            /&gt;
+            &lt;h4&gt;{product.title}&lt;/h4&gt;
+            &lt;p&gt;Price: ${product.price}&lt;/p&gt;
+            &lt;p&gt;Category: {product.category}&lt;/p&gt;
+            &lt;p&gt;
+              Rating: {product.rating.rate} ⭐ ({product.rating.count} reviews)
+            &lt;/p&gt;
+          &lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
 }
+
 export default Products;
       </pre>
     </section>
@@ -840,6 +883,7 @@ export default Products;
 </body>
 
 </html>
+
 
 
 
