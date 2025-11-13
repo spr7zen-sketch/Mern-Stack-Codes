@@ -106,11 +106,39 @@
       <p class="desc">Create a basic Node HTTP server that responds "Hello world".</p>
       <pre id="code1">
 // lab1: http server - hello world (index.js)
-const http = require(‘http’);
-http.createServer((req, res) =>
-{
- res.end(‘Hello world’);
-}).listen(3000);
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Armstrong Number&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form method="post"&gt;
+    &lt;table border="1"&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Enter Number:&lt;/td&gt;
+            &lt;td&gt;&lt;input type="number" name="number"&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;input type="submit" value="Submit" name="Submit"&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+&lt;?php
+if (isset($_POST['number'])) {
+    $a = $_POST['number'];
+    $num = $a; $sum = 0;
+    while ($num != 0) {
+        $r = $num % 10;
+        $sum = $sum + pow($r, strlen($a));
+        $num = (int)($num / 10);
+    }
+    if ($a == $sum)
+        echo "$a is an Armstrong Number";
+    else
+        echo "$a is not an Armstrong Number";
+}
+?&gt;
+    &lt;/table&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 
       </pre>
     </section>
@@ -905,6 +933,7 @@ export default Products;
 </body>
 
 </html>
+
 
 
 
