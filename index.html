@@ -713,22 +713,25 @@ export default App;
 
 // Child.js
          <!DOCTYPE html>
-<html lang="en">
-import React from "react";
-import Child from "./Child";
+<html>
+<head>
+  <title>Show React Code</title>
+</head>
+<body>
+  <h2>React Component Code:</h2>
 
-function App() {
-  return (
-    &lt;div&gt;
-      &lt;h1&gt;Parent Component&lt;/h1&gt;
-      &lt;Child name="Child" /&gt;
-    &lt;/div&gt;
-  );
+  <pre><code>
+import React from "react";
+
+function Child(props) {
+  return &lt;h2&gt;This is the Child Component.&lt;br /&gt; Hello, {props.name}!&lt;/h2&gt;;
 }
 
-export default App;
-  </body>
+export default Child;
+  </code></pre>
+</body>
 </html>
+
 
       </pre>
     </section>
@@ -933,6 +936,7 @@ export default Products;
 </body>
 
 </html>
+
 
 
 
