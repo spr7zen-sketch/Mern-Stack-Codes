@@ -263,14 +263,6 @@ students in three subjects.
       <p class="desc">Write a Php program to generate a simple calculator..</p>
       <pre id="code4">
 // lab4: Write a Php program to generate a simple calculator.
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Program Four Display</title>
-</head>
-<body>
-<h2>Program Four – PHP Calculator Code</h2
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;Program Four&lt;/title&gt;
@@ -334,10 +326,6 @@ if (isset($_POST["operator"]))
 &lt;/body&gt;
 &lt;/html&gt;
 </code>
-
-</body>
-</html>
-
       </pre>
     </section>
 
@@ -476,21 +464,71 @@ if (isset($_POST["operator"]))
       <p class="desc">Write a Php program to check whether the given string is palindrome or not</p>
         <pre id="code7">
 // Write a Php program to check whether the given string is palindrome or not
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Program Seven Code</title>
+</head>
+<body>
+
+<h2>Program Seven</h2>
+
+<pre>
 &lt;html&gt;
 &lt;head&gt;
-  &lt;title&gt;Form Submission&lt;/title&gt;
+ &lt;title&gt;Program Seven&lt;/title&gt;
+ &lt;style&gt;
+ body {
+     border: 5px solid black;
+     display: inline-block;
+     padding: 15px;
+     font-family: "Lucida Sans";
+     line-height: 2rem;
+ }
+ &lt;/style&gt;
 &lt;/head&gt;
+
 &lt;body&gt;
-  &lt;h2&gt;User Form&lt;/h2&gt;
-  &lt;form action=&quot;http://localhost:3000/submit&quot; method=&quot;POST&quot;&gt;
-    &lt;label&gt;Name:&lt;/label&gt;
-    &lt;input type=&quot;text&quot; name=&quot;name&quot; required&gt;&lt;br&gt;&lt;br&gt;
-    &lt;label&gt;Email:&lt;/label&gt;
-    &lt;input type=&quot;email&quot; name=&quot;email&quot; required&gt;&lt;br&gt;&lt;br&gt;
-    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
-  &lt;/form&gt;
+
+ &lt;form action="" method="post"&gt;
+     Enter the string:
+     &lt;input type="text" name="string" required&gt;&lt;br&gt;&lt;br&gt;
+     &lt;input type="submit" value="Submit" name="submit"&gt;
+     &lt;input type="reset" value="Clear"&gt;&lt;br&gt;&lt;br&gt;
+ &lt;/form&gt;
+
+ &lt;?php
+ if (isset($_POST["submit"]))
+ {
+     $theStr = $_POST["string"];
+     echo "The string is: $theStr&lt;br&gt;";
+     $rep = str_replace(' ', '', $theStr);
+     echo "The replaced string is: " . $rep . "&lt;br&gt;";
+     $lower = strtolower($rep);
+     echo "Lower string: " . $lower . "&lt;br&gt;";
+     $prog = preg_replace('/[^A-Z, a-z, 0-9\-]/', '', $lower);
+     echo "The replaced lower string is: " . $prog . "&lt;br&gt;";
+     $rev = strrev($prog);
+     echo "Reverse is: " . $rev . "&lt;br&gt;";
+
+     if ($prog == $rev)
+     {
+         echo "The given string $theStr is palindrome";
+     }
+     else
+     {
+         echo "The given string $theStr is not palindrome";
+     }
+ }
+ ?&gt;
+
 &lt;/body&gt;
 &lt;/html&gt;
+</pre>
+
+</body>
+</html>
+
         </pre>
   </section>
 
@@ -824,96 +862,148 @@ else
  die("Connection not established<br>".mysqli_error());
 }
 ?>
-    </code></pre>
+    </code>
 </div>
 
 <div class="code-block">
     <h2>insert.php</h2>
     <pre><code>
+<!DOCTYPE html>
 <html>
+<head>
+    <title>Insert Page Code</title>
+</head>
 <body>
- <a href="view.php">View</a> <br><br>
- <?php
+
+<h2>insert.php</h2>
+
+<pre>
+&lt;html&gt;
+&lt;body&gt;
+ &lt;a href="view.php"&gt;View&lt;/a&gt; &lt;br&gt;&lt;br&gt;
+
+ &lt;?php
  include("connection.php");
- ?>
- <form method="post">
- <table border="1">
- <tr>
- <td>Enter Name:</td>
- <td><input type="text" name="name" required></td>
- </tr>
+ ?&gt;
 
- <tr>
- <td>Enter Age:</td>
- <td><input type="number" name="age" required></td>
- </tr>
+ &lt;form method="post"&gt;
+ &lt;table border="1"&gt;
 
- <tr>
- <td colspan="2"><input type="submit" value="Insert" name="ins"></td>
- </tr>
- </table>
- </form>
+ &lt;tr&gt;
+ &lt;td&gt;Enter Name:&lt;/td&gt;
+ &lt;td&gt;
+ &lt;input type="text" name="name" required&gt;
+ &lt;/td&gt;
+ &lt;/tr&gt;
 
- <?php
+ &lt;tr&gt;
+ &lt;td&gt;Enter Age:&lt;/td&gt;
+ &lt;td&gt;
+ &lt;input type="number" name="age" required&gt;
+ &lt;/td&gt;
+ &lt;/tr&gt;
+
+ &lt;tr&gt;
+ &lt;td colspan="2"&gt;
+ &lt;input type="submit" value="Insert" name="ins"&gt;
+ &lt;/td&gt;
+ &lt;/tr&gt;
+
+ &lt;/table&gt;
+ &lt;/form&gt;
+
+ &lt;?php
  if (isset($_POST["ins"]))
  {
- $name = $_POST["name"];
- $age = $_POST["age"];
- $sql = "insert into details values('$name', '$age')";
- $res = mysqli_query($con, $sql);
+     $name = $_POST["name"];
+     $age  = $_POST["age"];
 
- if ($res)
-   echo "Details is inserted";
- else
-   echo "Details is not inserted";
+     $sql = "insert into details values('$name', '$age')";
+     $res = mysqli_query($con, $sql);
+
+     if ($res)
+     {
+         echo "Details is inserted";
+     }
+     else
+     {
+         echo "Details is not inserted";
+     }
  }
- ?>
+ ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
 </body>
 </html>
+
     </pre>
 </div>
 
 <div class="code-block">
     <h2>view.php</h2>
+<!DOCTYPE html>
 <html>
 <head>
- <title>View</title>
+    <title>View Page Code</title>
 </head>
 <body>
- <a href="insert.php">Insert new record</a><br><br>
 
- <table border="1">
- <?php
+<h2>view.php</h2>
+
+<pre>
+&lt;html&gt;
+&lt;head&gt;
+ &lt;title&gt;View&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+ &lt;a href="insert.php"&gt;Insert new record&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+
+ &lt;table border="1"&gt;
+ &lt;?php
  include("connection.php");
  $count = 0;
-
  $sql = "select * from details order by name desc";
  $res = mysqli_query($con, $sql);
 
- echo "<tr><td>NAME</td><td>AGE</td></tr>";
+ echo "&lt;tr&gt;&lt;td&gt;";
+ echo "NAME";
+ echo "&lt;/td&gt;&lt;td&gt;";
+ echo "AGE";
+ echo "&lt;/td&gt;&lt;/tr&gt;";
 
  while ($row = mysqli_fetch_assoc($res))
  {
-   echo "<tr><td>".$row["Name"]."</td><td>".$row["Age"]."</td></tr>";
-   $count++;
+     echo "&lt;tr&gt;&lt;td&gt;";
+     echo $row["Name"];
+     echo "&lt;/td&gt;&lt;td&gt;";
+     echo $row["Age"];
+     echo "&lt;/td&gt;&lt;/tr&gt;";
+     $count++;
  }
 
  if ($count == 0)
  {
-   echo "No records in the table.";
+     echo "No records in the table.";
  }
- ?>
- </table>
+ ?&gt;
+ &lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
 </body>
 </html>
+
 </div>
-<script src="script.js"></script>
 </body>
 </html>
     </code>
       </pre>
-    </section>
-</div>
+    </section>  
 
     <section id="lab11" class="card">
       <div class="code-header">
@@ -1259,6 +1349,7 @@ export default Products;
 </body>
 
 </html>
+
 
 
 
