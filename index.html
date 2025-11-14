@@ -146,42 +146,42 @@ if (isset($_POST['number'])) {
     <section id="lab2" class="card">
       <div class="code-header">
         <div class="badge">Lab 2</div>
-        <h2>HTTP Server — Serve an HTML file</h2>
+        <h2>Write a Php program to demonstrate date function.</h2>
         <button class="btn-copy" data-target="code2">Copy</button>
       </div>
       <p class="desc">Node HTTP server that reads and serves a simple HTML file.</p>
       <pre id="code2">
-// lab2: serve HTML file (index.js)
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
-const server = http.createServer((req, res) =>
-{
- fs.readFile(path.join(__dirname, 'pg2.html'), (err,
-data) =>
+// lab2: Write a Php program to demonstrate date function.
+?php
+ date_default_timezone_set("Asia/Kolkata");
+ $late = "its Late Night";
+ $morning = "Good Morning";
+ $afternoon = "Good Afternoon";
+ $evening = "Good Evening";
+
+ //get current time
+ $a = date("G");
+ echo "Current Time is: $a<br>";
+ if ($a >= 0 && $a <= 5)
  {
- if (err)
- {
- res.end('Error loading the HTML file');
- return;
+ echo $late;
  }
- res.end(data);
- });
-});
-server.listen(3000);
-
-server.listen(3000, () => console.log('Server running at http://localhost:3000'));
-
-//index.html
-<html>
-<body>
-&lt;html&gt;
-&lt;body&gt;
-  &lt;h1&gt;Hello, World!&lt;/h1&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</body>
-</html>
+ else if ($a >= 6 && $a <= 11)
+ {
+ echo $morning;
+ }
+ else if ($a >= 12 && $a <= 16)
+ {
+ echo $afternoon;
+ }
+ else if ($a >= 17 && $a <= 23)
+ {
+ echo $evening;
+ }
+ //get current day
+ $b = date("l");
+ echo "Today is $b<br>";
+?>
 
       </pre>
     </section>
@@ -189,99 +189,226 @@ server.listen(3000, () => console.log('Server running at http://localhost:3000')
     <section id="lab3" class="card">
       <div class="code-header">
         <div class="badge">Lab 3</div>
-        <h2>Express — "Hello World" route</h2>
+        <h2>Write a Php program to demonstrate array concept to store marks of three
+students in three subjects.</h2>
         <button class="btn-copy" data-target="code3">Copy</button>
       </div>
       <p class="desc">Simple Express app that responds on GET /</p>
       <pre id="code3">
-// lab3: express hello world (server.js)
-const express = require('express');
-const app = express();
-app.get('/', (req, res) =>
-{
- res.send(`Hello World`);
-}).listen(3000);
+// lab3: Write a Php program to demonstrate array concept to store marks of three
+students in three subjects.
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Display PHP Code</title>
+</head>
+<body>
+
+<h2>PHP Program Display:</h2>
+
+<pre><code>
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Program Three&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Student Marks&lt;/h2&gt;
+
+  &lt;?php
+  $stdMarks = array(
+    "Ramesh" =>
+      array("Java" =&gt; "88",
+            "Php" =&gt; "98",
+            "Networking" =&gt; "78"),
+
+    "Suresh" =>
+      array("Java" =&gt; "83",
+            "Php" =&gt; "90",
+            "Networking" =&gt; "82"),
+
+    "Kishan" =>
+      array("Java" =&gt; "85",
+            "Php" =&gt; "90",
+            "Networking" =&gt; "79")
+  );
+
+  foreach ($stdMarks as $std =&gt; $subjectArray)
+  {
+    echo "Marks of $std:&lt;br&gt;";
+    foreach ($subjectArray as $subject =&gt; $marks)
+    {
+      echo "$subject = $marks ";
+    }
+    echo "&lt;br&gt;&lt;br&gt;";
+  }
+  ?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+</body>
+</html>
+
       </pre>
     </section>
 
     <section id="lab4" class="card">
       <div class="code-header">
         <div class="badge">Lab 4</div>
-        <h2>POST JSON — server + client button</h2>
+        <h2>Write a Php program to generate a simple calculator.</h2>
         <button class="btn-copy" data-target="code4">Copy</button>
       </div>
-      <p class="desc">Express server handles JSON POST; `index.html` sends JSON via fetch.</p>
+      <p class="desc">Write a Php program to generate a simple calculator..</p>
       <pre id="code4">
-// lab4: server.js (express)
-const express = require('express');
-const app = express();
-app.use(express.json());
-app.use(express.static(__dirname));
-
-app.post('/submit', (req, res) => {
-  res.json({ message: 'data received', yourData: req.body });
-});
-
-app.listen(3000, () => console.log('Server on http://localhost:3000'));
-      
+// lab4: Write a Php program to generate a simple calculator.
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Program Four Display</title>
+</head>
 <body>
-  <h2>HTML Code Example:</h2>
-  <pre><code>
+
+<h2>Program Four – PHP Calculator Code</h2>
+
+<pre><code>
 &lt;html&gt;
-&lt;body&gt;
-&lt;button onclick=&quot;sendData()&quot;&gt;Submit JSON&lt;/button&gt;
-&lt;script&gt;
-function sendData()
+&lt;head&gt;
+  &lt;title&gt;Program Four&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;?php
+if (isset($_POST["operator"]))
 {
-  fetch('http://localhost:3000/submit', 
+  $first_num = $_POST["first_num"];
+  $second_num = $_POST["second_num"];
+  $operator = $_POST["operator"];
+  $result = "";
+
+  if (is_numeric($first_num) && is_numeric($second_num))
   {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: &quot;BCA&quot;, section: &quot;A&quot; })
-  })
-  .then(res =&gt; res.json())
-  .then(data =&gt; alert('Response: ' + JSON.stringify(data)));
+    switch ($operator)
+    {
+      case "+": $result = $first_num + $second_num;
+        break;
+      case "-": $result = $first_num - $second_num;
+        break;
+      case "*": $result = $first_num * $second_num;
+        break;
+      case "/": $result = $first_num / $second_num;
+        break;
+    }
+  }
 }
-&lt;/script&gt;
+?&gt;
+
+&lt;body&gt;
+  &lt;h1&gt;PHP Simple Calculator&lt;/h1&gt;
+
+  &lt;form action="" method="POST"&gt;
+
+    &lt;p&gt;
+      &lt;b&gt;First Number:&lt;/b&gt;
+      &lt;input type="number" name="first_num"
+      value="&lt;?php echo $first_num; ?&gt;" required&gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      &lt;b&gt;Second Number:&lt;/b&gt;
+      &lt;input type="number" name="second_num"
+      value="&lt;?php echo $second_num; ?&gt;" required&gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;
+      &lt;b&gt;Result:&lt;/b&gt;
+      &lt;input type="number" name="result"
+      value="&lt;?php echo $result; ?&gt;" readonly&gt;
+    &lt;/p&gt;
+
+    &lt;input type="submit" value="+" name="operator"&gt;
+    &lt;input type="submit" value="-" name="operator"&gt;
+    &lt;input type="submit" value="*" name="operator"&gt;
+    &lt;input type="submit" value="/" name="operator"&gt;
+
+  &lt;/form&gt;
+
 &lt;/body&gt;
 &lt;/html&gt;
-  </code></pre>
+</code></pre>
+
 </body>
 </html>
 
-}
-</script>
-</p>
       </pre>
     </section>
 
     <section id="lab5" class="card">
       <div class="code-header">
         <div class="badge">Lab 5</div>
-        <h2>Express Route with URL parameters</h2>
+        <h2>Write a Php program to demonstrate $_POST method and display pattern.
+</h2>
         <button class="btn-copy" data-target="code5">Copy</button>
       </div>
-      <p class="desc">Accepts parameters and returns a message that includes them.</p>
+      <p class="desc">Write a Php program to demonstrate $_POST method and display pattern.
+</p>
       <pre id="code5">
-// lab5: url params (server.js)
-const express = require('express');
-const app = express();
-const PORT = 3000;
-app.get('/users/:userName/:age/:role', (req, res) =>
-{
- const { userName } = req.params;
- const { age} = req.params;
- const { role } = req.params;
- res.send(`name is ${userName} and age is ${age} and
-role is ${role} `);
-});
-app.listen(PORT, () =>
-{
- console.log(`Server is running at
-http://localhost:${PORT}`);
-});
+// lab5: Write a Php program to demonstrate $_POST method and display pattern.
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Program Five - Show Code</title>
+</head>
+<body>
+    <h2>Program Five Code</h2>
+
+    <pre><code>
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Program Five&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php
+    $noOfLines = "";
+    $symbol = "";
+    if (isset($_POST["submit"])) {
+        $noOfLines = $_POST["line"];
+        $symbol = $_POST["symbol"];
+    }
+    ?&gt;
+
+    &lt;h2&gt;Pyramid&lt;/h2&gt;
+    &lt;form method="post"&gt;
+        Enter the loop number:
+        &lt;input type="number" name="line" required value="&lt;?php echo $noOfLines; ?&gt;"&gt;&lt;br&gt;&lt;br&gt;
+
+        Enter the symbol:
+        &lt;input type="text" name="symbol" required value="&lt;?php echo $symbol; ?&gt;"&gt;&lt;br&gt;&lt;br&gt;
+
+        &lt;input type="submit" value="Submit" name="submit"&gt;
+        &lt;input type="reset" value="Clear" name="clr"&gt;&lt;br&gt;&lt;br&gt;
+    &lt;/form&gt;
+
+    &lt;?php
+    if ($noOfLines and $symbol) {
+        for ($i = 0; $i &lt; $noOfLines; $i++) {
+            for ($j = 0; $j &lt; $i + 1; $j++) {
+                echo "&lt;b&gt;$symbol&lt;/b&gt;&amp;nbsp;&amp;nbsp;";
+            }
+            echo "&lt;br&gt;";
+        }
+    }
+    ?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+
+</body>
+</html>
+
 
       </pre>
     </section>
@@ -289,44 +416,79 @@ http://localhost:${PORT}`);
     <section id="lab6" class="card">
       <div class="code-header">
         <div class="badge">Lab 6</div>
-        <h2>Express: Multiple routes (/, /home, /about)</h2>
+        <h2>Write a Php program to upload a file, and display the image details.
+</h2>
         <button class="btn-copy" data-target="code6">Copy</button>
       </div>
-      <p class="desc">Basic routing example with three routes.</p>
+      <p class="desc">Write a Php program to upload a file, and display the image details.
+</p>
       <pre id="code6">
-// lab6: multiple routes
-const express = require('express');
-const app = express();
-const PORT = 3000;
-app.get('/', (req, res) =>
-{
- res.send('Hello from Express Server!');
-});
-app.get('/home', (req, res) =>
-{
- res.send('Hello tis is home page ');
-});
-app.get('/about', (req, res) =>
-{
- res.send('Hello this is about page');
-});
-app.listen(PORT, () =>
-{
- console.log(`Server is running at
-http://localhost:${PORT}`);
-});
+// lab6: 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Program Six - Show Code</title>
+</head>
+<body>
+    <h2>Program Six Code</h2>
+
+    <pre><code>
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Program Six&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;table border="1"&gt;
+    &lt;form action="" method="post" enctype="multipart/form-data"&gt;
+
+        Upload Image:
+        &lt;input type="file" name="photo"&gt;&lt;br&gt;&lt;br&gt;
+        &lt;input type="submit" value="Submit" name="submit"&gt;&lt;br&gt;&lt;br&gt;
+
+        &lt;?php
+        if (isset($_POST["submit"])) {
+            $photo = $_FILES["photo"]["name"];
+            $path = "upload/" . $photo;
+
+            if (move_uploaded_file($_FILES["photo"]["tmp_name"], $path)) {
+
+                echo "&lt;br&gt;Image uploaded successfully!!&lt;br&gt;";
+                echo "&lt;tr&gt;&lt;td&gt;&lt;b&gt;Image Name:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;";
+                echo $_FILES["photo"]["name"];
+                echo "&lt;/td&gt;&lt;/tr&gt;&lt;td&gt;&lt;b&gt;Image type:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;";
+                echo $_FILES["photo"]["type"];
+                echo "&lt;/td&gt;&lt;/tr&gt;&lt;td&gt;&lt;b&gt;Image size:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;";
+                echo $_FILES["photo"]["size"];
+                echo "&lt;/td&gt;&lt;/tr&gt;&lt;td&gt;&lt;b&gt;The image:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;";
+                echo "&lt;img src='$path' height=200 width=300&gt;&lt;/td&gt;&lt;/tr&gt;";
+
+            } else {
+                echo "error";
+            }
+        }
+        ?&gt;
+
+    &lt;/form&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+
+</body>
+</html>
+
       </pre>
     </section>
 
     <section id="lab7" class="card">
       <div class="code-header">
         <div class="badge">Lab 7</div>
-        <h2>HTML form -> Express (log data)</h2>
+        <h2>Write a Php program to check whether the given string is palindrome or not</h2>
         <button class="btn-copy" data-target="code7">Copy</button>
       </div>
-      <p class="desc">Form posts to /submit; server logs form fields and echoes result.</p>
+      <p class="desc">Write a Php program to check whether the given string is palindrome or not</p>
       <pre id="code7">
-// index.html (form)
+// Write a Php program to check whether the given string is palindrome or not
   <pre><code>
 &lt;html&gt;
 &lt;head&gt;
@@ -346,124 +508,130 @@ http://localhost:${PORT}`);
 </body>
 </html>
 
-// server.js
-const express = require('express');
-const app = express();
-const port = 3000;
-app.use(express.urlencoded({ extended: true }));
-app.post('/submit', (req, res) =>
-{
- const { name, email } = req.body;
- console.log('User Name:', name);
- console.log('Email:', email);
- res.send(`Received credentials:<br>
-UserName: ${name}<br>Email: ${email}`);
-});
-app.listen(port, () =>
-{
- console.log(`Server running at
-http://localhost:${port}`);
-});
-
       </pre>
     </section>
 
     <section id="lab8" class="card">
       <div class="code-header">
         <div class="badge">Lab 8</div>
-        <h2>Node + MongoDB: Create & Read (http server)</h2>
+        <h2>Write a Php script to insert and display values from different input fields.
+</h2>
         <button class="btn-copy" data-target="code8">Copy</button>
       </div>
-      <p class="desc">HTTP server that inserts into MongoDB and returns a student list.</p>
+      <p class="desc">Write a Php script to insert and display values from different input fields.
+</p>
       <pre id="code8">
-// lab8: Node HTTP server with Mongoose (server.js)
-const http = require('http');
-const mongoose = require('mongoose');
-const fs = require('fs');
-const querystring = require('querystring');
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/studentdb')
- .then(() => console.log('Connected to MongoDB'))
- .catch(err => console.error('MongoDB connection error:',
-err));
-// Define schema & model
-const Student = mongoose.model('Student',
-{
- name: String,
- email: String
-});
-// Create server
-const server = http.createServer((req, res) =>
-{
- // Serve the HTML form
- if (req.url === '/' && req.method === 'GET')
- {
- fs.readFile('index.html', (err, html) =>
- {
- if (err)
- {
- res.end('Error loading page');
- return;
- }
- res.writeHead(200, { 'Content-Type': 'text/html' });
- res.end(html);
- });
- }
- // Handle form submission
- else if (req.url === '/submit' && req.method === 'POST')
- {
- let body = '';
- req.on('data', chunk => body += chunk);
- req.on('end', async () =>
- {
- const data = querystring.parse(body);
- // Insert into MongoDB
- await Student.create({ name: data.name,
-email: data.email });
- // Fetch all records
- const students = await Student.find();
+// lab8: Write a Php script to insert and display values from different input fields.
 
-// Display students line by line
- let result = 'Student List:\n';
-
-students.forEach(s =>
-{
- result += `${s.name} - ${s.email}\n`;
- });
- res.end(result);
- });
- }
- // 404 for other routes
- else
- {
- res.end('404 - Page Not Found');
- }
-});
-// Start server
-server.listen(3000, () =>
-{
- console.log('Server is running at
-http://localhost:3000');
-});
-
-        <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Program 8 - Show Code</title>
+</head>
 <body>
-  <h2>HTML Code Example:</h2>
-  <pre><code>
+
+<h2>Program 8 Code</h2>
+
+<pre><code>
 &lt;html&gt;
-  &lt;body&gt;
-    &lt;h2&gt;Student Form&lt;/h2&gt;
-    &lt;form action=&quot;http://localhost:3000/submit&quot; method=&quot;POST&quot;&gt;
-      &lt;label&gt;Name:&lt;/label&gt;
-      &lt;input type=&quot;text&quot; name=&quot;name&quot; required&gt;&lt;br&gt;&lt;br&gt;
-      &lt;label&gt;Email:&lt;/label&gt;
-      &lt;input type=&quot;email&quot; name=&quot;email&quot; required&gt;&lt;br&gt;&lt;br&gt;
-      &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
-    &lt;/form&gt;
-  &lt;/body&gt;
+&lt;head&gt;
+    &lt;title&gt;Program 8&lt;/title&gt;
+    &lt;style&gt;
+        table {
+            border: 4px solid black;
+            padding: 10px;
+            width: 350px;
+        }
+        td {
+            padding: 5px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;form action="" method="post"&gt;
+&lt;table&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Name:&lt;/td&gt;
+&lt;td&gt;&lt;input type="text" name="name" required&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Address:&lt;/td&gt;
+&lt;td&gt;
+&lt;textarea name="addr" cols="30" rows="10" required&gt;&lt;/textarea&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;DOB&lt;/td&gt;
+&lt;td&gt;&lt;input type="date" name="dob" required&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Gender&lt;/td&gt;
+&lt;td&gt;
+&lt;input type="radio" name="gen" value="Male"&gt;Male
+&lt;input type="radio" name="gen" value="Female"&gt;Female
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Hobbies&lt;/td&gt;
+&lt;td&gt;
+&lt;select name="hob[]" multiple="multiple" size="4" required&gt;
+&lt;option value="Coding"&gt;Coding&lt;/option&gt;
+&lt;option value="Drawing"&gt;Drawing&lt;/option&gt;
+&lt;option value="Travelling"&gt;Travelling&lt;/option&gt;
+&lt;option value="Gaming"&gt;Gaming&lt;/option&gt;
+&lt;/select&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;input type="submit" value="Submit" name="submit"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type="reset" value="Reset"&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+&lt;/form&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;h3&gt;&lt;u&gt;After Submitting:&lt;/u&gt;&lt;/h3&gt;
+
+&lt;table border="1"&gt;
+&lt;?php
+if (isset($_POST["submit"])) {
+
+    $name = $_POST["name"];
+    $addr = $_POST["addr"];
+    $dob = $_POST["dob"];
+    $gen = $_POST["gen"];
+    $hobbies = $_POST["hob"];
+
+    echo "&lt;tr&gt;&lt;td&gt;Name:&lt;/td&gt;&lt;td&gt;$name&lt;/td&gt;&lt;/tr&gt;";
+    echo "&lt;tr&gt;&lt;td&gt;Address:&lt;/td&gt;&lt;td&gt;$addr&lt;/td&gt;&lt;/tr&gt;";
+    echo "&lt;tr&gt;&lt;td&gt;DOB:&lt;/td&gt;&lt;td&gt;$dob&lt;/td&gt;&lt;/tr&gt;";
+    echo "&lt;tr&gt;&lt;td&gt;Gender:&lt;/td&gt;&lt;td&gt;$gen&lt;/td&gt;&lt;/tr&gt;";
+
+    echo "&lt;tr&gt;&lt;td&gt;Hobbies:&lt;/td&gt;&lt;td&gt;";
+
+    for ($i = 0; $i &lt; sizeof($hobbies) - 1; $i++) {
+        echo $hobbies[$i] . ", ";
+    }
+
+    echo $hobbies[$i] . "&lt;/td&gt;&lt;/tr&gt;";
+}
+?&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
 &lt;/html&gt;
-  </code></pre>
+</code></pre>
+
 </body>
 </html>
 
@@ -473,68 +641,92 @@ http://localhost:3000');
     <section id="lab9" class="card">
       <div class="code-header">
         <div class="badge">Lab 9</div>
-        <h2>Express + MongoDB: store form data</h2>
+        <h2> Write a Php script to create a database, create table and delete the database.</h2>
         <button class="btn-copy" data-target="code9">Copy</button>
       </div>
-      <p class="desc">Express app that saves posted form data to MongoDB.</p>
+      <p class="desc"> Write a Php script to create a database, create table and delete the database.</p>
       <pre id="code9">
-// lab9: express + mongoose (server.js)
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const app = express();
-const PORT = 3000;
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-mongoose.connect('mongodb://localhost:27017/formdb')
-.then(() => console.log('Connected to MongoDB'))
-.catch(err => console.error('MongoDB connection error:',
- err));
-const userSchema = new mongoose.Schema(
-{
- name: String,
- email: String
-});
-const User = mongoose.model('User', userSchema);
-app.post('/submit', (req, res) =>
-{
- try
- {
- const { name, email } = req.body;
- const newUser = new User({ name, email });
- newUser.save();
- res.send(' Data saved successfully!');
- }
- catch (error)
- {
- console.error('Error saving data:', error);
- res.send('Failed to save data');
- }
-});
-app.listen(PORT, () => {
- console.log(` Server running at http://localhost:${PORT}`);
-});
-
-        <!DOCTYPE html>
-<html lang="en">
+// lab9:  Write a Php script to create a database, create table and delete the database.
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Program 1 Part B - Show Code</title>
+</head>
 <body>
-  <h2>HTML Code Example:</h2>
-  <pre><code>
+
+<h2>Program 1 Part B Code</h2>
+
+<pre><code>
 &lt;html&gt;
-  &lt;body&gt;
-    &lt;h2&gt;Student Form&lt;/h2&gt;
-    &lt;form action=&quot;http://localhost:3000/submit&quot; method=&quot;POST&quot;&gt;
-      &lt;label&gt;Name:&lt;/label&gt;
-      &lt;input type=&quot;text&quot; name=&quot;name&quot; required&gt;&lt;br&gt;&lt;br&gt;
-      &lt;label&gt;Email:&lt;/label&gt;
-      &lt;input type=&quot;email&quot; name=&quot;email&quot; required&gt;&lt;br&gt;&lt;br&gt;
-      &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
-    &lt;/form&gt;
-  &lt;/body&gt;
+&lt;head&gt;
+    &lt;title&gt;Program 1 part B&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;form action="" method="post"&gt;
+    &lt;input type="submit" value="Create Database" name="createdb"&gt;
+    &lt;input type="submit" value="Create Table" name="createtable"&gt;
+    &lt;input type="submit" value="Delete Database" name="deletedb"&gt;
+&lt;/form&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;?php
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+
+$con = mysqli_connect($servername, $username, $password);
+
+if ($con) {
+    echo "Connection Established&lt;br&gt;";
+} else {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if (isset($_POST["createdb"])) {
+    $sql = "create database mydb";
+    $res = mysqli_query($con, $sql);
+
+    if ($res) {
+        echo "Database created successfully";
+    } else {
+        die("Error creating database: " . mysqli_error($con));
+    }
+}
+
+if (isset($_POST["createtable"])) {
+    $sql1 = "create table book(bid int, bname varchar(30), publisher varchar(30));";
+    $res1 = mysqli_query($con, $sql1);
+
+    if ($res1) {
+        echo "Table created successfully";
+    } else {
+        echo "Error creating table: " . mysqli_error($con);
+    }
+}
+
+if (isset($_POST["deletedb"])) {
+    $sql2 = "drop database mydb";
+    $res2 = mysqli_query($con, $sql2);
+
+    if ($res2) {
+        echo "Database is deleted";
+    } else {
+        die("Not deleted" . mysqli_error($con));
+    }
+}
+
+?&gt;
+
+&lt;/body&gt;
 &lt;/html&gt;
-  </code></pre>
+</code></pre>
+
 </body>
 </html>
+
 
       </pre>
     </section>
@@ -542,52 +734,232 @@ app.listen(PORT, () => {
     <section id="lab10" class="card">
       <div class="code-header">
         <div class="badge">Lab 10</div>
-        <h2>React: Simple form (useState)</h2>
+        <h2>Write a Php script to insert employee name and age to the database and display
+the records in table format</h2>
         <button class="btn-copy" data-target="code10">Copy</button>
       </div>
-      <p class="desc">React functional component capturing input and displaying submitted value.</p>
+      <p class="desc">Write a Php script to insert employee name and age to the database and display
+the records in table format</p>
       <pre id="code10">
-// App.js (React)
-import React, { useState } from 'react';
+//Write a Php script to insert employee name and age to the database and display
+the records in table format
+//connection.php
+        <!DOCTYPE html>
+<html>
+<head>
+    <title>Display PHP Code</title>
+</head>
+<body>
 
-function UserForm() {
-  const [inputValue, setInputValue] = useState('');
-  const [submittedValue, setSubmittedValue] = useState('');
+<h2>PHP Connection Code</h2>
 
-  const handleChange = (e) =&gt; {
-    setInputValue(e.target.value);
-  };
+<pre><code>
+&lt;?php
+$con = mysqli_connect("localhost", "root", "");
+mysqli_select_db($con, "mydb");
 
-  const handleSubmit = (e) =&gt; {
-    e.preventDefault();
-    setSubmittedValue(inputValue);
-  };
-
-  return (
-    &lt;div&gt;
-      &lt;h2&gt;Simple React Form&lt;/h2&gt;
-      &lt;form onSubmit={handleSubmit}&gt;
-        &lt;input
-          type="text"
-          placeholder="Enter something..."
-          value={inputValue}
-          onChange={handleChange}
-        /&gt;
-        &lt;button type="submit"&gt;Submit&lt;/button&gt;
-      &lt;/form&gt;
-      {submittedValue &amp;&amp; (
-        &lt;div&gt;
-          &lt;strong&gt;You entered:&lt;/strong&gt; {submittedValue}
-        &lt;/div&gt;
-      )}
-    &lt;/div&gt;
-  );
+if ($con)
+{
+    echo "Connection is established&lt;br&gt;";
 }
+else
+{
+    die("Connection not established&lt;br&gt;" . mysqli_error());
+}
+?&gt;
+</code></pre>
 
-export default UserForm;
-  </code></pre>
 </body>
 </html>
+
+//insert.php
+        <!DOCTYPE html>
+<html>
+<head>
+    <title>Program Display</title>
+</head>
+<body>
+
+<h2>Insert Details Program</h2>
+
+<pre><code>
+&lt;html&gt;
+&lt;body&gt;
+
+    &lt;a href="view.php"&gt;View&lt;/a&gt; &lt;br&gt;&lt;br&gt;
+
+    &lt;?php
+    include("connection.php");
+    ?&gt;
+
+    &lt;form method="post"&gt;
+        &lt;table border="1"&gt;
+            &lt;tr&gt;
+                &lt;td&gt;Enter Name:&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;input type="text" name="name" required&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+
+            &lt;tr&gt;
+                &lt;td&gt;Enter Age:&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;input type="number" name="age" required&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+
+            &lt;tr&gt;
+                &lt;td colspan="2"&gt;
+                    &lt;input type="submit" value="Insert" name="ins"&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/form&gt;
+
+    &lt;?php
+    if (isset($_POST["ins"]))
+    {
+        $name = $_POST["name"];
+        $age = $_POST["age"];
+        $sql = "insert into details values('$name', '$age')";
+        $res = mysqli_query($con, $sql);
+
+        if ($res)
+        {
+            echo "Details is inserted";
+        }
+        else
+        {
+            echo "Details is not inserted";
+        }
+    }
+    ?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+</body>
+</html>
+
+//view.php
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Code Viewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>PHP Code Viewer</h1>
+
+<div class="code-block">
+    <h2>connection.php</h2>
+    <pre><code>
+<?php
+$con = mysqli_connect("localhost", "root", "");
+mysqli_select_db($con, "mydb");
+if ($con)
+{
+ echo "Connection is established<br>";
+}
+else
+{
+ die("Connection not established<br>".mysqli_error());
+}
+?>
+    </code></pre>
+</div>
+
+<div class="code-block">
+    <h2>insert.php</h2>
+    <pre><code>
+<html>
+<body>
+ <a href="view.php">View</a> <br><br>
+ <?php
+ include("connection.php");
+ ?>
+ <form method="post">
+ <table border="1">
+ <tr>
+ <td>Enter Name:</td>
+ <td><input type="text" name="name" required></td>
+ </tr>
+
+ <tr>
+ <td>Enter Age:</td>
+ <td><input type="number" name="age" required></td>
+ </tr>
+
+ <tr>
+ <td colspan="2"><input type="submit" value="Insert" name="ins"></td>
+ </tr>
+ </table>
+ </form>
+
+ <?php
+ if (isset($_POST["ins"]))
+ {
+ $name = $_POST["name"];
+ $age = $_POST["age"];
+ $sql = "insert into details values('$name', '$age')";
+ $res = mysqli_query($con, $sql);
+
+ if ($res)
+   echo "Details is inserted";
+ else
+   echo "Details is not inserted";
+ }
+ ?>
+</body>
+</html>
+    </code></pre>
+</div>
+
+<div class="code-block">
+    <h2>view.php</h2>
+    <pre><code>
+<html>
+<head>
+ <title>View</title>
+</head>
+<body>
+ <a href="insert.php">Insert new record</a><br><br>
+
+ <table border="1">
+ <?php
+ include("connection.php");
+ $count = 0;
+
+ $sql = "select * from details order by name desc";
+ $res = mysqli_query($con, $sql);
+
+ echo "<tr><td>NAME</td><td>AGE</td></tr>";
+
+ while ($row = mysqli_fetch_assoc($res))
+ {
+   echo "<tr><td>".$row["Name"]."</td><td>".$row["Age"]."</td></tr>";
+   $count++;
+ }
+
+ if ($count == 0)
+ {
+   echo "No records in the table.";
+ }
+ ?>
+ </table>
+</body>
+</html>
+    </code></pre>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
 
       </pre>
     </section>
@@ -936,6 +1308,7 @@ export default Products;
 </body>
 
 </html>
+
 
 
 
